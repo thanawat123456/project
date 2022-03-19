@@ -13,6 +13,10 @@ server.listen(5)  # กำหนดจำนวน client
 print("รอการเชื่อมต่อจาก client :")
 client, addr = server.accept()  # method นี้จะยืนยันว่า client ได้เชื่อมกับ server แล้ว และเก็บค่าใน client,addr
 print("Connected From : "+str(addr))
+count = 0
+count +=1
+print('Connect count: ',count)
+
 
 def UsersList():
     with sqlite3.connect("hotel.db") as db:
@@ -72,6 +76,14 @@ def Register(name,p):
    cur.execute(InsertData,[(username),(password)])
    db.commit()
 
+def book():
+    while True:
+
+        print('--------------')
+        print()
+        break
+
+
 def status():
     while True:
         print('--------------------')
@@ -81,7 +93,8 @@ def status():
         break
 
 while True:
-
+    
+    
     # รับข้อมูลจาก Client
     data = client.recv(1024).decode('utf-8')  # 1024byte หรือ 1024 ตัวอักษร และแปลง byte เป็น string
     if not data:
@@ -107,6 +120,11 @@ while True:
     elif data == 'ทำการชำระเงินเรียบร้อย':
         status() 
         print("client: ", data)
-    elif data == 'Hello':
+    elif data == 'book':
+       dat = client.recv(1024).decode('utf-8')
+       book()
        print(data)   
+      
+       
+       
 client.close()
