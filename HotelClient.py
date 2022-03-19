@@ -647,6 +647,9 @@ def Record():
             try:
                 print("|",name[n],"\t |",phno[n],"\t|",add[n],"\t|",checkin[n],"\t|",checkout[n],"\t|",room[n],"\t|",price[n])
                 print('esssssooooo',booklist)
+                data = 'book'
+                server.send(data.encode('utf-8'))
+
             except:
                 
                 pass    
